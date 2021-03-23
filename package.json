@@ -1,0 +1,32 @@
+{
+  "name": "observables-over-boundary",
+  "version": "0.0.1",
+  "description": "Allow observables to be communicated over a boundary (such as network)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loreanvictor/observables-over-boundary.git"
+  },
+  "author": "Eugene Ghanizadeh Khoub <ghanizadeh.eugene@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loreanvictor/observables-over-boundary/issues"
+  },
+  "homepage": "https://github.com/loreanvictor/observables-over-boundary#readme",
+  "dependencies": {
+    "rxjs": "^6.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint": "^7.22.0",
+    "ts-loader": "^8.0.18",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.1.0",
+    "typescript": "^4.2.3"
+  }
+}
