@@ -13,11 +13,11 @@ import { Channel } from './channel'
 export class InputLayer {
   constructor() {}
 
-  parse<T=unknown>(id: string, channel: Channel): Observable<T> {
+  parse<T=unknown>(observableId: string, channel: Channel): Observable<T> {
     return new Observable(observer => {
-      const subid$ = (async () => { return await channel.subscribe(id, observer) })()
+      const subid$ = (async () => { return await channel.subscribe(observableId, observer) })()
 
-      return () => subid$.then(subid => subid ? channel.unsubscribe(id, subid) : void(0))
+      return () => subid$.then(subid => subid ? channel.unsubscribe(observableId, subid) : void(0))
     })
   }
 }

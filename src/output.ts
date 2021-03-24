@@ -20,7 +20,7 @@ export class OutputLayer implements Channel {
     monitor?: Subscription,
   }} = {}
 
-  serialize(obs: Observable<unknown>) {
+  serialize(obs: Observable<unknown>): string {
     if (!(obs as any).__registry_id__) {
       (obs as any).__registry_id__ = makeId()
       this.registry[(obs as any).__registry_id__] = { obs, refCount: 0, subs: {} }
@@ -29,17 +29,17 @@ export class OutputLayer implements Channel {
     return (obs as any).__registry_id__
   }
 
-  subscribe(id: string, observer: Observer<any>) {
-    if (!(id in this.registry)) {
+  subscribe(observableId: string, observer: Observer<any>) {
+    if (!(observableId in this.registry)) {
       return
     }
 
-    const entry = this.registry[id]
+    const entry = this.registry[observableId]
     if (entry.refCount === 0) {
       const cleanup = () => {
         sub.unsubscribe()
-        Object.values(this.registry[id].subs).forEach(sub => sub.unsubscribe())
-        delete this.registry[id]
+        Object.values(this.registry[observableId].subs).forEach(sub => sub.unsubscribe())
+        delete this.registry[observableId]
       }
 
       const sub = entry.obs.subscribe({
@@ -58,15 +58,15 @@ export class OutputLayer implements Channel {
     return subid
   }
 
-  unsubscribe(id: string, subid: string) {
-    if (!(id in this.registry)) {
+  unsubscribe(observableId: string, subscriptionId: string) {
+    if (!(observableId in this.registry)) {
       return
     }
 
-    const entry = this.registry[id]
-    const sub = entry.subs[subid]
+    const entry = this.registry[observableId]
+    const sub = entry.subs[subscriptionId]
     sub.unsubscribe()
-    delete entry.subs[subid]
+    delete entry.subs[subscriptionId]
     entry.refCount--
 
     if (entry.refCount === 0) {
