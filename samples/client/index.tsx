@@ -19,8 +19,8 @@ adapter.connect()
 fetch('http://localhost:3000')
   .then(r => r.text())
   .then(r => {
-    adapter.parse(r).subscribe(msg => {
-      messages.sub(messages.get().length).set(msg as string)
+    adapter.parse<string>(r).subscribe(msg => {
+      messages.sub(messages.get().length).set(msg)
     })
   })
 

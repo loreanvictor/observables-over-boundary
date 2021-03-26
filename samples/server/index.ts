@@ -36,6 +36,13 @@ app.post('/', (req, res) => {
   res.sendStatus(200)
 })
 
+app.get('/inspect', (_, res) => {
+  res.json(adapter.output.inspect())
+})
+
 server.listen(port, () => {
   console.log('Listening on ' + port)
 })
+
+
+setInterval(() => sub.next('------'), 2000)

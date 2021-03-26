@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "sample/init": "cd ./samples/client && npm i && cd ../server && npm i",
-    "sample/client": "cd ./samples/client && npx snowpack dev",
-    "sample/server": "cd ./samples/server && npx ts-node-dev .",
+    "sample/client": "cd ./samples/client && npm start",
+    "sample/server": "cd ./samples/server && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

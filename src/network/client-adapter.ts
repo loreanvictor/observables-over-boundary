@@ -18,7 +18,7 @@ export class NetworkClientAdapter<Msg> extends BaseAdapter<Msg, unknown>{
       .subscribe(msg => this.receive(msg, connection))
   }
 
-  public parse(observableId: string) {
-    return this._parse(observableId, this.client.connection())
+  public parse<T=unknown>(observableId: string) {
+    return this._parse<T>(observableId, this.client.connection())
   }
 }

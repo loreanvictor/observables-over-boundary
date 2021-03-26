@@ -26,10 +26,10 @@ export class NetworkAdapter<Msg, Id> extends BaseAdapter<Msg, Id> {
       ).subscribe()
   }
 
-  public parse(observableId: string, source: Id) {
+  public parse<T=unknown>(observableId: string, source: Id) {
     const connection = this.network.map().find(source)
     if (connection) {
-      return this._parse(observableId, connection)
+      return this._parse<T>(observableId, connection)
     }
   }
 }
